@@ -1,9 +1,5 @@
 # Tratamento de dados obtidos através do TOPAS utilizando Python
 
-## Método de Monte Carlo
-
-
-
 ## Geant4
 
 o Geant4 é uma plataforma desenvolvida em C++ utilizada para simular a passagem de partículas pela matéria usando o método de Monte Carlo. Você pode encontrar mais informações sobre o Geant4 [aqui](https://geant4.web.cern.ch/).
@@ -78,5 +74,16 @@ Em um momento do código é necessário fornecer o nome do arquivo output que de
 ![image](https://user-images.githubusercontent.com/66263337/171267535-2f5c83ae-cc50-4d6a-8499-32749a49fc3a.png)
 
 É importante notar que o arquivo deve estar na mesmo pasta que o arquivo `.ipynb`, como o `eletrons16MeVCampo10x10.csv`. Caso contrário encontraremos um erro.
+
+## Exemplo de execução
+
+Fornecendo os parâmetros desejados:
+
+![output](https://user-images.githubusercontent.com/66263337/174501369-6a4d5505-12e6-41c9-9968-d4bb4a0375e5.gif)
+
+Executando linha a linha:
+
+![output2](https://user-images.githubusercontent.com/66263337/174501734-19983150-2622-4198-a7f1-05fcc31ebbd8.gif)
+
 
 ## Referências
