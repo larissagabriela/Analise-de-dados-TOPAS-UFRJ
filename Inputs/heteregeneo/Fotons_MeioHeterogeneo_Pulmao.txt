@@ -1,0 +1,116 @@
+########################
+#      GEOMETRIAS      #
+########################
+
+# PLACA 1 (ÁGUA)
+s:Ge/Placa1/Type         = "TsBox"
+s:Ge/Placa1/Material     = "G4_WATER"
+b:Ge/Placa1/IsParallel   = "False"
+s:Ge/Placa1/Parent       = "World"
+d:Ge/Placa1/HLX          = 7.5 cm
+d:Ge/Placa1/HLY          = 7.5 cm
+d:Ge/Placa1/HLZ          = 2.5 cm
+s:Ge/Placa1/Color        = "Blue"
+
+
+# PLACA 2 (PULMÃO)
+s:Ge/Placa2/Type           = "TsBox"
+s:Ge/Placa2/Material       = "G4_LUNG_ICRP"
+d:Ma/G4_LUNG_ICRP/Density  = 0.26 g/cm3
+b:Ge/Placa2/IsParallel     = "False"
+s:Ge/Placa2/Parent         = "World"
+d:Ge/Placa2/HLX            = 7.5 cm
+d:Ge/Placa2/HLY            = 7.5 cm
+d:Ge/Placa2/HLZ            = 1.5 cm
+d:Ge/Placa2/TransZ         = Ge/Placa1/HLZ + Ge/Placa2/HLZ cm
+s:Ge/Placa2/Color          = "Red"
+d:Ge/Ref1/TransZ = Ge/Placa2/TransZ + Ge/Placa2/HLZ cm
+
+
+# PLACA 3 (ÁGUA)
+s:Ge/Placa3/Type        = "TsBox"
+s:Ge/Placa3/Material    = "G4_WATER"
+b:Ge/Placa3/IsParallel  = "False"
+s:Ge/Placa3/Parent      = "World"
+d:Ge/Placa3/HLX         = 7.5 cm
+d:Ge/Placa3/HLY         = 7.5 cm
+d:Ge/Placa3/HLZ         = 2.5 cm
+d:Ge/Placa3/TransZ      = Ge/Ref1/TransZ +  Ge/Placa3/HLZ cm
+s:Ge/Placa3/Color       = "Blue"
+
+
+# DOSÍMETRO (NECESSÁRIO PARA AVALIAR AS 3 PLACAS COMO UMA GEOMETRIA ÚNICA)
+s:Ge/Dosimetro/Type          = "TsBox"
+b:Ge/Dosimetro/IsParallel    = "True"
+s:Ge/Dosimetro/Parent        = "World"
+#s:Ge/Dosimetro/DrawingStyle = "Solid"
+s:Ge/Dosimetro/Color         = "Yellow"
+d:Ge/Dosimetro/HLX           = 7.5 cm
+d:Ge/Dosimetro/HLY           = 7.5 cm
+d:Ge/TamanhoDos/HLZ          = Ge/Placa2/HLZ + Ge/Placa3/HLZ cm
+d:Ge/TamanhoDos2/HLZ         = Ge/TamanhoDos/HLZ + Ge/Placa1/HLZ cm
+d:Ge/Dosimetro/HLZ           = Ge/TamanhoDos2/HLZ cm
+d:Ge/Dosimetro/TransZ        = Ge/TamanhoDos/HLZ cm
+i:Ge/Dosimetro/XBins         = 15
+i:Ge/Dosimetro/YBins         = 15
+i:Ge/Dosimetro/ZBins         = 130
+
+
+###############################
+#    CONFIGURAÇÃO DO FEIXE    #
+###############################
+
+# TIPO DE RADIAÇÃO
+s:So/Field/BeamParticle               = "gamma" 
+s:So/Field/Type                       = "Beam"
+s:So/Field/BeamEnergySpectrumType     = "Continuous"
+s:So/Field/Component                  = "BeamPosition"
+dv:So/Field/BeamEnergySpectrumValues  = 60  0.25 0.5	 0.75	1	1.25	1.5	1.75	2	2.25	2.5	2.75	3	3.25	3.5	3.75	4	4.25	4.5	4.75	5	5.25	5.5	5.75	6	6.25	6.5	6.75	7	7.25	7.5	7.75	8	8.25	8.5	8.75	9	9.25	9.5	9.75	10	10.25	10.5	10.75	11 11.25	11.5	11.75	12	12.25	12.5	12.75	13	13.25	13.5	13.75	14	14.25	14.5	14.75	15 MeV
+uv:So/Field/BeamEnergySpectrumWeights = 60  0.000685525543616563	0.00715531712192372	0.0348533188842091	0.0535494700737517	0.0616280539210849	0.0634745873719039	0.0609356038770278	0.056780903612685	0.0521645699856374	0.0475482363585899	0.0429319027315423	0.0392388358299043	0.036007402290971	0.0327759687520377	0.0297753518944568	0.0272363683995806	0.0249282015860568	0.0233124848165902	0.0212120530162835	0.0196655812512226	0.0181883544905674	0.0167572910661826	0.0155801259912855	0.0144722059207941	0.0135027758591141	0.0127410808106513	0.0118178140852418	0.0110792007049141	0.0105483223378037	0.00987895396188177	0.00914034058155417	0.00863254388257894	0.00817091051987418	0.00766311382089895	0.00724764379446467	0.00685525543616563	0.00634745873719039	0.00609356038770278	0.00565500869313326	0.00533186533923993	0.0050087219853466	0.00470866029958851	0.00452400695450661	0.00420086360061328	0.00376231190604376	0.00357765856096186	0.00334684187960948	0.00306986186198663	0.00286212684876949	0.00265439183555235	0.00235433014979426	0.00208196646579845	0.00188577228664893	0.00161571676946665	0.00135027758591141	0.0104098323289922	0.000630129540091992	0.000316218853452758	0.0000706299044938277	0.000006116642056
+
+s:So/Field/BeamPositionDistribution  = "None"
+s:So/Field/BeamAngularDistribution   = "Flat"
+d:So/Field/BeamAngularCutoffX        = 0.00999966669 rad
+d:So/Field/BeamAngularCutoffY        = 0.00999966669 rad
+d:Ge/BeamPosition/TransZ             = -100 cm - Ge/Placa1/HLZ
+d:Ge/BeamPosition/RotX               = 0 deg
+
+
+#######################################
+#           SAÍDA DO CÓDIGO           #
+#######################################
+
+s:Sc/Dose/Quantity                         = "DoseToMaterial"
+s:Sc/Dose/Material                         = "Pulmao"
+b:Sc/Dose/PreCalculateStoppingPowerRatios  = "True"
+s:Sc/Dose/Component                        = "Dosimetro"
+b:Sc/Dose/OutputToConsole                  = "TRUE"
+s:Sc/Dose/IfOutputFileAlreadyExists        = "Overwrite"
+s:Sc/Dose/OutputFile			   = "FOTONS_MEIO_HETEROGÊNEO_PULMÃO_15MV"
+s:Sc/Dose/OutputType			   = "csv"
+
+
+#########################################################################
+#    	VISUALIZAÇÃO GRÁFICA E OUTROS PARÂMETROS DA SIMULAÇÃO    	#
+#########################################################################
+
+# VISUALIZAÇÃO GRÁFICA
+#s:Gr/ViewA/Type            = "OpenGL"
+i:Gr/ViewA/WindowSizeX      = 1024
+i:Gr/ViewA/WindowSizeY      = 768
+d:Gr/ViewA/Theta            = 90 deg
+d:Gr/ViewA/Phi              = 0 deg
+s:Gr/ViewA/Projection       = "Perspective"
+d:Gr/ViewA/PerspectiveAngle = 45 deg
+u:Gr/ViewA/Zoom             = 1
+b:Gr/ViewA/IncludeAxes      = "False"
+b:Ge/World/Invisible = "TRUE"
+
+# NÚMERO DE HISTÓRIAS
+i:So/Field/NumberOfHistoriesInRun   = 100000000
+i:Ts/ShowHistoryCountAtInterval     = 1000
+b:Ge/CheckForOverlaps = "False"
+
+# OUTROS PARÂMETROS
+i:Ts/NumberOfThreads = 0
+b:Ts/PauseBeforeQuit = "True"

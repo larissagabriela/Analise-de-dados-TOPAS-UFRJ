@@ -1,0 +1,72 @@
+########################
+#      GEOMETRIAS      #
+########################
+
+# SIMULADOR DE ÁGUA
+s:Ge/Phantom/Type      = "TsBox"
+s:Ge/Phantom/Parent    = "World"
+d:Ge/Phantom/HLZ       = 15 cm
+d:Ge/Phantom/HLX       = 15 cm
+d:Ge/Phantom/HLY       = 15 cm
+s:Ge/Phantom/Material  = "G4_WATER"
+i:Ge/Phantom/XBins	= 15
+i:Ge/Phantom/YBins	= 15
+i:Ge/Phantom/ZBins	= 100
+
+
+###############################
+#    CONFIGURAÇÃO DO FEIXE    #
+###############################
+
+# TIPO DE RADIAÇÃO
+s:So/Field/BeamParticle               = "gamma" 
+s:So/Field/Type                       = "Beam"
+s:So/Field/BeamEnergySpectrumType     = "Continuous"
+s:So/Field/Component                  = "BeamPosition"
+dv:So/Field/BeamEnergySpectrumValues  = 44  0.25 0.5     0.75    1    1.25    1.5    1.75    2    2.25    2.5    2.75    3    3.25    3.5    3.75    4    4.25    4.5    4.75    5    5.25    5.5    5.75    6    6.25    6.5    6.75    7    7.25    7.5    7.75    8    8.25    8.5    8.75    9    9.25    9.5    9.75    10    10.25    10.5    10.75    11 MeV
+uv:So/Field/BeamEnergySpectrumWeights = 44  0.0100788428900337	0.0470531615584446	0.0606957941996504	0.0618094784968917	0.0618094784968917	0.0606957941996504	0.0567978991593059	0.0528443199040993	0.0489464248637548	0.0452712666828585	0.0417631611465484	0.0383664240399625	0.035359476437411	0.032742318338894	0.030180844455239	0.0278421074310323	0.02589315991086	0.0239442123906878	0.0220509490853776	0.0202690542097915	0.0190440014828261	0.0177075803261365	0.0160927380951367	0.0152574748722057	0.0141437905749644	0.0131414747074472	0.012027790410206	0.0111368429724129	0.010301579749482	0.00952200074141304	0.00868673751848208	0.00796284272527524	0.00735031636179253	0.00662642156858569	0.00590252677537885	0.00510624250285132	0.00447144245342379	0.00371970555278592	0.00307933708187217	0.00227191596637224	0.00140881063601023	0.000555728464323405	0.0000668210578344775	0.0000017095053963
+
+s:So/Field/BeamPositionDistribution  = "None"
+s:So/Field/BeamAngularDistribution   = "Flat"
+d:So/Field/BeamAngularCutoffX        = 0.0499583957 rad
+d:So/Field/BeamAngularCutoffY        = 0.0499583957 rad
+d:Ge/BeamPosition/TransZ             = -115 cm
+d:Ge/BeamPosition/RotX               = 0 deg
+
+
+########################################
+#           SAÍDA DO CÓDIGO	        #
+########################################
+
+s:Sc/DoseNaCaixa/Quantity                       = "DoseToMedium"
+s:Sc/DoseNaCaixa/Component                      = "Phantom"
+b:Sc/DoseNaCaixa/OutputToConsole                = "TRUE"
+s:Sc/DoseNaCaixa/IfOutputFileAlreadyExists      = "Overwrite"
+s:Sc/DoseNaCaixa/OutputFile			  = "FOTONS_MEIO_HOMOGENEO_10MV"
+s:Sc/DoseNaCaixa/OutputType			  = "csv"
+
+
+######################################################################
+#    	VISUALIZAÇÃO GRÁFICA E OUTROS PARÂMETROS DA SIMULAÇÃO    	#
+######################################################################
+
+# VISUALIZAÇÃO GRÁFICA
+#s:Gr/ViewA/Type             = "OpenGL"
+i:Gr/ViewA/WindowSizeX       = 1024
+i:Gr/ViewA/WindowSizeY       = 768
+d:Gr/ViewA/Theta             = 90 deg
+d:Gr/ViewA/Phi               = 0 deg
+s:Gr/ViewA/Projection        = "Perspective"
+d:Gr/ViewA/PerspectiveAngle  = 45 deg
+u:Gr/ViewA/Zoom              = 1
+b:Gr/ViewA/IncludeAxes       = "False"
+b:Ge/World/Invisible         = "TRUE"
+
+# NÚMERO DE HISTÓRIAS
+i:So/Field/NumberOfHistoriesInRun   = 100000000
+i:Ts/ShowHistoryCountAtInterval     = 1000
+b:Ge/CheckForOverlaps = "False"
+
+# OUTROS PARÂMETROS
+i:Ts/NumberOfThreads = 0
+b:Ts/PauseBeforeQuit = "True"

@@ -1,0 +1,70 @@
+########################
+#      GEOMETRIA       #
+########################
+
+# SIMULADOR DE ÁGUA
+s:Ge/Phantom/Type       = "TsBox"
+s:Ge/Phantom/Parent     = "World"
+d:Ge/Phantom/HLZ        = 15 cm
+d:Ge/Phantom/HLX        = 15 cm
+d:Ge/Phantom/HLY        = 15 cm
+s:Ge/Phantom/Material   = "G4_WATER"
+i:Ge/Phantom/XBins	= 45
+i:Ge/Phantom/YBins	= 45
+i:Ge/Phantom/ZBins	= 300
+
+
+################################
+#    CONFIGURAÇÃO DO FEIXE     #
+################################
+
+# TIPO DE RADIAÇÃO
+s:So/Field/BeamParticle              = "e-" 
+s:So/Field/Type                      = "Beam"
+s:So/Field/Component                 = "BeamPosition"
+d:So/Field/BeamEnergy                = 6 MeV
+
+s:So/Field/BeamPositionDistribution   = "None"
+s:So/Field/BeamAngularDistribution    = "Flat"
+d:So/Field/BeamAngularCutoffX         = 2.862405 deg
+d:So/Field/BeamAngularCutoffY         = 2.862405 deg
+d:Ge/BeamPosition/TransZ              = -115 cm
+d:Ge/BeamPosition/RotX                = 0 deg
+
+
+######################################
+#           SAÍDA DO CÓDIGO          #
+######################################
+
+s:Sc/DoseNaCaixa/Quantity                       = "DoseToMedium"
+s:Sc/DoseNaCaixa/Component                      = "Phantom"
+b:Sc/DoseNaCaixa/OutputToConsole                = "TRUE"
+s:Sc/DoseNaCaixa/IfOutputFileAlreadyExists      = "Overwrite"
+s:Sc/DoseNaCaixa/OutputFile		        = "DoseNoSimulador_eletrons_6MeV_Campo10x10"
+s:Sc/DoseNaCaixa/OutputType		        = "csv"
+
+
+#####################################################################
+#	VISUALIZAÇÃO GRÁFICA E OUTROS PARÂMETROS DA SIMULAÇÃO	    #
+#####################################################################
+
+# VISUALIZAÇÃO GRÁFICA
+#s:Gr/ViewA/Type             = "OpenGL"
+i:Gr/ViewA/WindowSizeX       = 1024
+i:Gr/ViewA/WindowSizeY       = 768
+d:Gr/ViewA/Theta             = 90 deg
+d:Gr/ViewA/Phi               = 0 deg
+s:Gr/ViewA/Projection        = "Perspective"
+d:Gr/ViewA/PerspectiveAngle  = 45 deg
+u:Gr/ViewA/Zoom              = 1
+b:Gr/ViewA/IncludeAxes       = "False"
+b:Ge/World/Invisible         = "TRUE"
+
+# NÚMERO DE HISTÓRIAS
+i:So/Field/NumberOfHistoriesInRun   = 50000000
+i:Ts/ShowHistoryCountAtInterval     = 1000
+
+# OUTROS PARÂMETROS
+i:Ts/NumberOfThreads = 0 
+b:Ts/PauseBeforeQuit = "True"            
+
